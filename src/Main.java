@@ -33,7 +33,7 @@ public class Main extends Application
 	{
 		
 		NonogramView view = new NonogramView();
-		Presenter presenter = new Presenter();
+		Presenter presenter = new Presenter(model, view);
 		Scene viewScene = new Scene(view);
 		viewScene.getStylesheets().add(STYLE_SHEET);
 		primaryStage.setScene(viewScene);

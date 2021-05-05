@@ -47,8 +47,8 @@ public class PuzzleLoader extends GridPane
 			{
 				try
 				{
-					NonogramModel model = new NonogramModel();
-					main.startNonogramModel(model, cellSpinner.getValue());
+					NonogramModel model = new NonogramModel(fileEntry.getText());
+					main.startNonogramPlayer(model, cellSpinner.getValue());
 					
 					//Creates model from file
 				}

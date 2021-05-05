@@ -83,7 +83,7 @@ The class has two [Labels](https://openjfx.io/javadoc/11/javafx.controls/javafx/
 * Add an [EventHandler](https://openjfx.io/javadoc/11/javafx.base/javafx/event/EventHandler.html) to the button that creates a NonogramModel from the puzzle file with the name in the text field.
 If the constructor throws an exception, catch it and show an error [Alert](https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/Alert.html) with the message "File could not be read."
 
-* If the NonogramModel is created successfully, get the side length from the spinner and call the method startNonogramCreator on the Main object.
+* If the NonogramModel is created successfully, get the side length from the spinner and call the method startNonogramPlayer on the Main object.
 (A reference to the Main object is given to the PuzzleLoader constructor.)
 
 ## Model-View-Presenter
@@ -161,8 +161,8 @@ The following diagram shows the classes that implement the graphical user interf
 
 ![view uml](img/view-uml.svg)
 
-Unlike in Project 4, where the GUI classes *encapsulated* Pane and its subclasses, the GUI classes in this project *extend* Pane and its subclasses.
-This makes it more convenient to combine the components created in different classes because the objects themselves can be added to scenes and panes, rather than having to call a method to get the encapsulated components (e.g., the getPane method in Project 4).
+Unlike in Project 4, where each GUI class *encapsulated* a subclass of [Pane](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/layout/Pane.html), the GUI classes in this project each *extend* a subclass of Pane.
+This makes it more convenient to combine graphical components in different objects because the objects themselves can be added to scenes and panes, rather than having to call methods to access the components (e.g., the getPane method in Project 4).
 
 The classes RowClueView, ColClueView, ClueView, and CellView are included with the starter code.
 Study these classes before trying to write NonogramView, RowCluesView, ColCluesView, and CellGridView.
@@ -200,6 +200,9 @@ This class is a [GridPane](https://openjfx.io/javadoc/11/javafx.graphics/javafx/
 This class is a [VBox](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/layout/VBox.html) that displays the row clues.
 
 * `RowCluesView(int[][] rowClues, int cellLength, int width)`: Create a list of RowClueViews, and add them to the VBox with the clue for the first row at the top and the clue for the last row at the bottom.
+The parameter width is the number of ClueViews in each RowClueView.
+The value should be equal to the length of the row clue with the most numbers.
+(Calculate this value in NonogramView.)
 
 * `setRowState(int rowIdx, boolean solved)`: Update the state of the RowClueView with the given index.
 
