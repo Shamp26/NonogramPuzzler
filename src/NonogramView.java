@@ -8,8 +8,11 @@ public class NonogramView extends BorderPane implements View
 	
 	public NonogramView(int[][] rowClues, int[][] colClues, int cellLength)
 	{
-		left = new RowCluesView(rowClues, cellLength, 1);
-		top = new ColCluesView(colClues, cellLength, 1);
+		int rowWidth = calcRowWidth(rowClues);
+		int colHeight = calcColHeight(colClues);
+		
+		left = new RowCluesView(rowClues, cellLength, rowWidth);
+		top = new ColCluesView(colClues, cellLength, colHeight);
 		center = new CellGridView(rowClues.length, colClues.length, cellLength);
 		
 		this.setLeft(left);
@@ -17,6 +20,32 @@ public class NonogramView extends BorderPane implements View
 		this.setCenter(center);
 		
 		this.setStyle("nonogram-view");
+	}
+
+	private int calcRowWidth(int[][] rowClues) 
+	{
+		int rowWidth = 0;
+		for(int i = 0; i < rowClues.length; i++)
+		{
+			if(rowClues[i].length > rowWidth)
+			{
+				rowWidth = rowClues[i].length;
+			}
+		}
+		return rowWidth;
+	}
+	
+	private int calcColHeight(int[][] colClues) 
+	{
+		int colHeight = 0;
+		for(int i = 0; i < colClues.length; i++)
+		{
+			if(colClues[i].length > colHeight)
+			{
+				colHeight = colClues[i].length;
+			}
+		}
+		return colHeight;
 	}
 	
 	@Override
@@ -49,6 +78,6 @@ public class NonogramView extends BorderPane implements View
 	@Override
 	public void register(Presenter presenter) 
 	{
-		this.register(presenter);
+		center.register(presenter);
 	}
 }
