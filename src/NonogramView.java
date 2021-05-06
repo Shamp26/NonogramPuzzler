@@ -1,4 +1,5 @@
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 public class NonogramView extends BorderPane implements View
 {
@@ -15,9 +16,17 @@ public class NonogramView extends BorderPane implements View
 		top = new ColCluesView(colClues, cellLength, colHeight);
 		center = new CellGridView(rowClues.length, colClues.length, cellLength);
 		
+		this.setCenter(center);
 		this.setLeft(left);
 		this.setTop(top);
-		this.setCenter(center);
+		
+		
+		VBox fillBox = new VBox();
+		fillBox.setPrefWidth(rowWidth);
+		fillBox.setPrefHeight(colHeight);
+		this.setBottom(fillBox);
+		
+		
 		
 		this.setStyle("nonogram-view");
 	}

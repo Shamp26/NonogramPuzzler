@@ -25,6 +25,8 @@ public class Presenter
 		
 		
 		CellState initState = model.getCellState(rowIdx, colIdx);
+		
+		System.out.println(rowIdx + " " + colIdx);
 		CellState chosenState;
 		// Left-clicking changes an EMPTY or MARKED cell to FILLED. Right-clicking changes an EMPTY or FILLED cell to MARKED.
 		//Left-clicking a FILLED cell or right-clicking a MARKED cell changes it to EMPTY
