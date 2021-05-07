@@ -18,14 +18,15 @@ public class NonogramView extends BorderPane implements View
 		
 		this.setCenter(center);
 		this.setLeft(left);
-		top.setAlignment(Pos.CENTER_RIGHT);
 		this.setTop(top);
+		top.setAlignment(Pos.CENTER_RIGHT);
 		
 		this.setStyle("nonogram-view");
 	}
 
 	private int calcRowWidth(int[][] rowClues) 
 	{
+		//Takes the array with the largest length
 		int rowWidth = 0;
 		for(int i = 0; i < rowClues.length; i++)
 		{
@@ -39,6 +40,7 @@ public class NonogramView extends BorderPane implements View
 	
 	private int calcColHeight(int[][] colClues) 
 	{
+		//Takes the array with the largest length
 		int colHeight = 0;
 		for(int i = 0; i < colClues.length; i++)
 		{
@@ -73,7 +75,11 @@ public class NonogramView extends BorderPane implements View
 	{
 		if(solved)
 		{
-			this.setStyle("nonogram-view-solved");
+			this.getStyleClass().add("nonogram-view-solved");
+		}
+		else
+		{
+			this.getStyleClass().remove("nonogram-view-solved");
 		}
 	}
 	

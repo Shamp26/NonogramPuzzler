@@ -9,7 +9,6 @@ public class ColCluesView extends HBox
 	public ColCluesView(int[][] colClues, int cellLength, int height)
 	{
 		colClueViews = new LinkedList<>();
-		this.setHeight(height);
 		
 		for(int i = 0; i < colClues.length; i++)
 		{
