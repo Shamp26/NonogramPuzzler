@@ -1,5 +1,5 @@
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 public class NonogramView extends BorderPane implements View
 {
@@ -18,15 +18,8 @@ public class NonogramView extends BorderPane implements View
 		
 		this.setCenter(center);
 		this.setLeft(left);
+		top.setAlignment(Pos.CENTER_RIGHT);
 		this.setTop(top);
-		
-		
-		VBox fillBox = new VBox();
-		fillBox.setPrefWidth(rowWidth);
-		fillBox.setPrefHeight(colHeight);
-		this.setBottom(fillBox);
-		
-		
 		
 		this.setStyle("nonogram-view");
 	}
@@ -62,16 +55,19 @@ public class NonogramView extends BorderPane implements View
 	{
 		center.setCellState(rowIdx, colIdx, state);
 	}
+	
 	@Override
 	public void setRowClueState(int rowIdx, boolean solved) 
 	{
 		left.setRowState(rowIdx, solved);
 	}
+	
 	@Override
 	public void setColClueState(int colIdx, boolean solved) 
 	{
 		top.setColState(colIdx, solved);
 	}
+	
 	@Override
 	public void setPuzzleState(boolean solved) 
 	{
@@ -79,11 +75,8 @@ public class NonogramView extends BorderPane implements View
 		{
 			this.setStyle("nonogram-view-solved");
 		}
-		else
-		{
-			this.setStyle("nonogram-view");
-		}
 	}
+	
 	@Override
 	public void register(Presenter presenter) 
 	{

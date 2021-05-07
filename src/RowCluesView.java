@@ -3,9 +3,6 @@ import java.util.List;
 
 import javafx.scene.layout.VBox;
 
-
-//./puzzles/pig.txt
-
 public class RowCluesView extends VBox
 {
 	private List<RowClueView> rowClueViews;
@@ -21,7 +18,6 @@ public class RowCluesView extends VBox
 			rowClueViews.add(rowClue);
 			this.getChildren().add(rowClue);
 		}
-		
 	}
 	
 	public void setRowState(int rowIdx, boolean solved)

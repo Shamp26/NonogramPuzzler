@@ -1,5 +1,4 @@
 import java.io.FileNotFoundException;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -18,10 +17,6 @@ public class PuzzleLoader extends GridPane
 	public static final int MAX_CELL_LENGTH = 50;
 	public static final int DEFAULT_CELL_LENGTH = 30;
 	public static final int SPACING = 10;
-	//will insert others
-	
-	//put name in title bar of puzzle loader
-	//screenshot save to project folder
 	
 	public PuzzleLoader(Main main)
 	{
@@ -47,10 +42,8 @@ public class PuzzleLoader extends GridPane
 			{
 				try
 				{
-					NonogramModel model = new NonogramModel(fileEntry.getText());
+					NonogramModel model = new NonogramModel(fileEntry.getText()); //Creates model from file entry
 					main.startNonogramPlayer(model, cellSpinner.getValue());
-					
-					//Creates model from file
 				}
 				catch(FileNotFoundException e)
 				{
@@ -58,16 +51,15 @@ public class PuzzleLoader extends GridPane
 					error.show();
 				}
 			}
-	
 		});
 		
 	}
-	private void setAlignment() {
+	
+	private void setAlignment() 
+	{
 		this.setHgap(SPACING);
 		this.setVgap(SPACING);
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(SPACING, SPACING, SPACING, SPACING));
-	}
-	
-	
+	}	
 }

@@ -72,9 +72,9 @@ public class CellView extends StackPane {
 			public void handle(MouseEvent event) {
 				MouseButton button = event.getButton();
 				if (button == MouseButton.PRIMARY) {
-					presenter.cellClicked(rowIdx, colIdx, true);
+					presenter.cellClicked(colIdx, rowIdx, true);
 				} else if (button == MouseButton.SECONDARY) {
-					presenter.cellClicked(rowIdx, colIdx, false);
+					presenter.cellClicked(colIdx, rowIdx, false);
 				}
 			}
 		});

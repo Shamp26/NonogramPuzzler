@@ -6,7 +6,6 @@ public class Presenter
 	
 	public Presenter(Model model, View view)
 	{
-		
 		this.model = model;
 		this.view = view;
 		view.register(this);
@@ -16,20 +15,14 @@ public class Presenter
 		syncCellStates(model, view);
 		
 		syncPuzzleState(model, view);
-		
-		
 	}
 	
 	public void cellClicked(int rowIdx, int colIdx, boolean primaryButton)
 	{
-		
-		
 		CellState initState = model.getCellState(rowIdx, colIdx);
-		
-		System.out.println(rowIdx + " " + colIdx);
 		CellState chosenState;
-		// Left-clicking changes an EMPTY or MARKED cell to FILLED. Right-clicking changes an EMPTY or FILLED cell to MARKED.
-		//Left-clicking a FILLED cell or right-clicking a MARKED cell changes it to EMPTY
+		
+		// Left-clicking changes an EMPTY or MARKED cell to FILLED.
 		if(primaryButton == true && (initState == CellState.EMPTY || initState == CellState.MARKED))
 		{
 			chosenState = CellState.FILLED;
@@ -38,6 +31,7 @@ public class Presenter
 			syncClueStates(model, view);
 			syncPuzzleState(model, view);
 		}
+		//Right-clicking changes an EMPTY or FILLED cell to MARKED.
 		else if(primaryButton == false && (initState == CellState.EMPTY || initState == CellState.FILLED))
 		{
 			chosenState = CellState.MARKED;
@@ -46,6 +40,7 @@ public class Presenter
 			syncClueStates(model, view);
 			syncPuzzleState(model, view);
 		}
+		//Left-clicking a FILLED cell or right-clicking a MARKED cell changes it to EMPTY.
 		else if((primaryButton == true && initState == CellState.FILLED) || (primaryButton == false && initState == CellState.MARKED))
 		{
 			chosenState = CellState.EMPTY;
@@ -54,11 +49,11 @@ public class Presenter
 			syncClueStates(model, view);
 			syncPuzzleState(model, view);
 		}
-		//update model to the desired state, then update the view
-		//if that solves the puzzle, change all marked cells to empty
 	}
 
-	private void syncPuzzleState(Model model, View view) {
+	private void syncPuzzleState(Model model, View view) 
+	{
+		//If the puzzle is solve, iterate through all the MARKED cells and empty them.
 		if(model.isSolved())
 		{
 			view.setPuzzleState(true);
@@ -80,7 +75,9 @@ public class Presenter
 		}
 	}
 
-	private void syncCellStates(Model model, View view) {
+	private void syncCellStates(Model model, View view) 
+	{
+		//Sync model cell states with the view cell states
 		for(int i = 0; i < model.getNumRows(); i++)
 		{
 			for(int j = 0; j < model.getNumCols(); j++)
@@ -90,7 +87,9 @@ public class Presenter
 		}
 	}
 
-	private void syncClueStates(Model model, View view) {
+	private void syncClueStates(Model model, View view) 
+	{
+		//Iterates through the model clue states and updates the view clue states.
 		for(int i = 0; i < model.getNumRows(); i++)
 		{
 			if(model.isRowSolved(i))
@@ -113,6 +112,5 @@ public class Presenter
 				view.setColClueState(i, false);
 			}
 		}
-	}
-	
+	}	
 }

@@ -9,7 +9,7 @@ public class CellGridView extends GridPane
 	
 	public CellGridView(int numRows, int numCols, int cellLength)
 	{
-		cellViews = new CellView[numRows][numCols];
+		cellViews = new CellView[numCols][numRows];
 		this.numRows = numRows;
 		this.numCols = numCols;
 		sideLength = cellLength;
@@ -18,26 +18,21 @@ public class CellGridView extends GridPane
 	}
 	
 	private void buildCellViews() 
-	{
-		System.out.println(numRows);
-		System.out.println(numCols);
-		
+	{	
 		for(int i = 0; i < this.numRows; i++)
 		{
 			for(int j = 0; j < this.numCols; j++)
 			{
-				CellView cell = new CellView(i, j, sideLength);
-				cellViews[i][j] = cell;
-				this.add(cell, i, j);
+				CellView cell = new CellView(j, i, sideLength);
+				cellViews[j][i] = cell;
+				this.add(cell, j, i);
 			}
-		}
-		
-		
+		}	
 	}
 	
 	public void setCellState(int rowIdx, int colIdx, CellState state)
 	{
-		cellViews[rowIdx][colIdx].setState(state);
+		cellViews[colIdx][rowIdx].setState(state);
 	}
 	
 	public void register(Presenter presenter)
@@ -46,7 +41,7 @@ public class CellGridView extends GridPane
 		{
 			for(int j = 0; j < numCols; j++)
 			{
-				cellViews[i][j].register(presenter);
+				cellViews[j][i].register(presenter);
 			}
 		}
 	}

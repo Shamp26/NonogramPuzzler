@@ -2,7 +2,6 @@ import java.util.LinkedList;
 import java.util.List;
 import javafx.scene.layout.HBox;
 
-
 public class ColCluesView extends HBox
 {
 	private List<ColClueView> colClueViews;
